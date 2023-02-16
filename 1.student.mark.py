@@ -16,7 +16,7 @@ for i in range(numStudent):
     DoB.append(i)
     
     print('Input the Id, name and DoB of the '+ str(i+1) +' student') 
-    studenId[i] = int(input('Id:'))
+    studenId[i] = (input('Id:'))
     studentName[i] = str(input('Name:'))
     DoB[i] = str(input('Date:'))
 
@@ -40,7 +40,7 @@ for i in range(numCourse):
     courseName.append(i)
 
     print('Input the course id and the course name')
-    courseId[i] = int(input('course Id:'))
+    courseId[i] = (input('course Id:'))
     courseName[i] = str(input('Course name:'))
 
 '''
