@@ -2,9 +2,17 @@
 python program 1?
 """
 
-print('Input number of students in the class:')
-numStudent = int(input(''))
+numStudent = 0
+while numStudent == 0:
+    nhap = input('Input number of students in the class: ')
+    if nhap.isnumeric():
+        numStudent = int(nhap)
+    else:
+        print('please type in a number')
+
 #print('There are '+ str(numStudent) +' students in the class')
+
+
 
 studenId = []
 studentName = []
@@ -29,8 +37,16 @@ print(DoB)
 leTroll 
 '''
 
-print('Input the number of courses in this class: ')
-numCourse = int(input(''))
+
+numCourse = 0
+while   numCourse == 0:
+    nhap = input('Input number of courses in this class: ')
+    if nhap.isnumeric():
+        numCourse = int(nhap)
+    else:
+        print('Plz enter a number')
+#
+
 
 courseId = []
 courseName = []
@@ -50,5 +66,4 @@ print(courseName)
 print(courseId)
 print(courseName)
 
-print('Select a course to input students\' marks by enter course name')
-
+#print('Select a course to input students\' marks by enter course name')
