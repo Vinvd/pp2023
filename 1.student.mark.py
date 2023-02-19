@@ -27,7 +27,7 @@ for i in range(numStudent):
     studentName[i] = str(input('Name:'))
     DoB[i] = str(input('Date:'))
 
-    student = {'ID': studentId[i], 'Name': studentName[i], 'DoB': DoB[i]}
+    student = {'Id': studentId[i], 'Name': studentName[i], 'DoB': DoB[i]}
     '''student["Id"] = studentId[i]
     student["Name"] = studentName[i] 
     student["DoB"] = DoB[i]'''
@@ -40,9 +40,13 @@ for i in range(numStudent):
 '''print('all students:',end=' ')
 print(students)
 print(type(students))
-print(students[0])
-print(type(students[0]))'''
 
+print(students[0])
+print(type(students[0]))
+
+print(students[0]['Name'], students[0]['Id'])
+print(type(students[0]['Name']))
+'''
 """print(student)       #already deleted(del)
 print(type(student))""" #this changed after each loop, only use studentS
 
