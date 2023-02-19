@@ -23,7 +23,7 @@ for i in range(numStudent):
     studentName.append(i)
     DoB.append(i)
     
-    print('Input the Id, name and DoB of the '+ str(i+1) +' student') 
+    print('Input the Id, name and DoB of the \"'+ str(i+1) +'\" student') 
     studentId[i] = (input('Id:'))
     studentName[i] = str(input('Name:'))
     DoB[i] = str(input('Date:'))
@@ -34,18 +34,27 @@ for i in range(numStudent):
     student["DoB"] = DoB[i]
 
     students.append(student)
+    del student
 
 
-''' code check
+''' code check'''
+
 print('all students:',end=' ')
 print(students)
+print(type(students))
 print(students[0])
+print(type(students[0]))
+
+"""print(student)       #already deleted(del)
+print(type(student))""" #this changed after each loop, only use studentS
+
+'''print(studentId)
 print(studentId[0])
-print(studentId)
 
-print(studentName[0])
 print(studentName)
+print(studentName[0])'''
 
+'''
 leTroll 
 '''
 
@@ -75,7 +84,5 @@ for i in range(numCourse):
 print(courseId)
 print(courseName)
 '''
-print(courseId)
-print(courseName)
 
 #print('Select a course to input students\' marks by enter course name')
