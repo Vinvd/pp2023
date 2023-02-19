@@ -13,26 +13,38 @@ while numStudent == 0:
 #print('There are '+ str(numStudent) +' students in the class')
 
 
-
-studenId = []
+students = []
+studentId = []
 studentName = []
 DoB = []
 
 for i in range(numStudent):
-    studenId.append(i)
+    studentId.append(i)
     studentName.append(i)
     DoB.append(i)
     
     print('Input the Id, name and DoB of the '+ str(i+1) +' student') 
-    studenId[i] = (input('Id:'))
+    studentId[i] = (input('Id:'))
     studentName[i] = str(input('Name:'))
     DoB[i] = str(input('Date:'))
 
-'''
-print(studenId)
+    student = {}
+    student["Id"] = studentId[i]
+    student["Name"] = studentName[i] 
+    student["DoB"] = DoB[i]
+
+    students.append(student)
+
+
+''' code check
+print('all students:',end=' ')
+print(students)
+print(students[0])
+print(studentId[0])
+print(studentId)
+
 print(studentName[0])
 print(studentName)
-print(DoB)
 
 leTroll 
 '''
