@@ -1,11 +1,13 @@
 """
-python program 1?  #need to use function(def)
-"""
+python program 1?  
+"""                 #need to use function(def)
 
 numStudent = 0
 while numStudent == 0:
     nhap = input('Input number of students in the class: ')
     if nhap.isnumeric():
+        if int(nhap)>10:
+            print('Are you sure?')
         numStudent = int(nhap)
     else:
         print('please type in a number')
@@ -27,15 +29,15 @@ for i in range(numStudent):
     studentName[i] = str(input('Name:'))
     DoB[i] = str(input('Date:'))
 
-    student = {'Id': studentId[i], 'Name': studentName[i], 'DoB': DoB[i]}
-    '''student["Id"] = studentId[i]
+    student = {}
+    student["Id"] = studentId[i]
     student["Name"] = studentName[i] 
-    student["DoB"] = DoB[i]'''
+    student["DoB"] = DoB[i]
 
     students.append(student)
     del student                 #not necessary because python clear it?
 
-''' code check'''
+''' code check'''  #codeCheck #codeCheck #codeCheck #codeCheck #codeCheck #codeCheck 
 
 '''print('all students:',end=' ')
 print(students)
@@ -56,7 +58,7 @@ print(studentId[0])
 print(studentName)
 print(studentName[0])'''
 
-'''
+'''               #codeCheck #codeCheck #codeCheck #codeCheck #codeCheck #codeCheck 
 leTroll 
 '''
 
@@ -77,13 +79,13 @@ for i in range(numCourse):
     courseName.append(i)
 
     print('Input the id and the name of the \"'+ str(i+1)+'\" course')
-    courseId[i] = (input('course Id:'))
+    courseId[i] = (input('Course Id:'))
     courseName[i] = str(input('Course name:'))
 
     course = {'id': courseId[i], 'name': courseName[i]}
     
     courses.append(course)
-    del course
+    del course                              #line :36
 
 '''
 print(courses)
