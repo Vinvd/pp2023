@@ -1,6 +1,6 @@
 """
 python program 1?  
-"""                 #need to use function(def)
+"""                 #need to use function(def) :D
 
 numStudent = 0
 while numStudent == 0:
@@ -17,25 +17,49 @@ while numStudent == 0:
 students = []
 studentId = []
 studentName = []
-DoB = []
+studentDoB = []
 
 for i in range(numStudent):
     studentId.append(i)
     studentName.append(i)
-    DoB.append(i)
+    studentDoB.append(i)
     
     print('Input the Id, name and DoB of the \"'+ str(i+1) +'\" student') 
     studentId[i] = (input('Id:'))
     studentName[i] = str(input('Name:'))
-    DoB[i] = str(input('Date:'))
+    studentDoB[i] = str(input('Date:'))
 
     student = {}
     student["Id"] = studentId[i]
     student["Name"] = studentName[i] 
-    student["DoB"] = DoB[i]
+    student["DoB"] = studentDoB[i]
 
     students.append(student)
     del student                 #not necessary because python clear it?
+
+print('Select a number to print: ')
+print('1: List all student and information')
+for i in range(3):
+    key_student = list(students[0].keys())
+    print(str(i+2)+ ": "+ key_student[i])
+
+x = 0
+while x == 0:
+    nhap = input('enter number in the given list: ')
+    if nhap.isnumeric():
+        if int(nhap) in range(1,4):
+            x = int(nhap)
+    else:
+        print('please type in a number')
+
+if x==1:
+    print(students)
+elif x==2:
+    print(studentId)
+elif x==3:
+   print(studentName)
+else:
+    print(studentDoB)
 
 ''' code check'''  #codeCheck #codeCheck #codeCheck #codeCheck #codeCheck #codeCheck 
 
@@ -85,7 +109,7 @@ for i in range(numCourse):
     course = {'id': courseId[i], 'name': courseName[i]}
     
     courses.append(course)
-    del course                              #line :36
+    del course                            
 
 '''
 print(courses)
