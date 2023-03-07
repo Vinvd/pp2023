@@ -32,7 +32,7 @@ def input_students_info(x):     #return list of students
     return students
 
 def print_students_info(x):     #feed list student in
-    print('Select a number to print: ')
+    print('\nSelect a number to print: ')
     print('1: List all students and information')
     for i in range(3):
         key_student = list(x[0].keys())
@@ -48,7 +48,8 @@ def print_students_info(x):     #feed list student in
             print('please type in a number')
 
     if y==1:
-        print(x)
+        for i in range(len(x)):
+            print(x[i])
     elif y==2:
         for i in range(len(x)):
             print(x[i]['Id'])        
@@ -70,15 +71,15 @@ print(type(students[0]))
 print(students[0]['Name'], students[0]['Id'])
 print(type(students[0]['Name']))
 
-"""print(student)       #already deleted(del)
-print(type(student))""" #this changed after each loop, only use studentS
+print(student)       #already deleted(del)
+print(type(student)) #this changed after each loop, only use studentS
      
 leTroll 
 '''                       #codeCheck #codeCheck #codeCheck #codeCheck #codeCheck #codeCheck 
 
 # Input courses
 def input_num_courses():    # return number of courses
-    type = input('Input number of courses in this class: ')
+    type = input('\nInput number of courses in this class: ')
     if type.isnumeric():
         numCourse = int(type)
     else:
@@ -104,7 +105,7 @@ def input_courses_info(x):  #return list of courses; need to eat an int
     return courses
 
 def print_courses_info(x):  #return info, need to eat course list
-    print('Select a number to print: ')
+    print('\nSelect a number to print: ')
     print('1: List information of all courses')
     for i in range(2):
         key_courses = list(x[0].keys())
@@ -118,9 +119,10 @@ def print_courses_info(x):  #return info, need to eat course list
                 y = int(type)
         else:
             print('please type in a number')
-
+    print('\n')
     if y==1:
-        print(x)
+        for i in range(len(x)):
+            print(x[i])
     elif y==2:
         for i in range(len(x)):
             print(x[i]['id'])
@@ -131,7 +133,7 @@ def print_courses_info(x):  #return info, need to eat course list
 
 # Input marks
 def input_marks(a,b,c):     # a is numcourse; b is list of courses; c is list students
-    print('Select a course to input students\' marks')
+    print('\nSelect number of a course to input students\' marks')
     a= int(a)
     for i in range(a):
         print(str(i+1)+ ": "+ b[i]['name'])
@@ -160,6 +162,7 @@ def input_marks(a,b,c):     # a is numcourse; b is list of courses; c is list st
     return b
 
 def show_marks(a):          # a is list of courses with marks
+    print('\nSelect a number of the course to show marks')
     for i in range(len(a)):
         print(str(i+1) + ': ' + a[i]['name'])  
     print('select course to output marks:')
@@ -172,10 +175,10 @@ def show_marks(a):          # a is list of courses with marks
                 y = int(type)
         else:
             print('please type in a number')
-
+    print('\n')
     if 'mark' in a[y-1]:
-        print(a[y-1]['mark'])
-    
+        for i in range(len(a[y-1]['mark'])):
+            print(a[y-1]['mark'][i])
     return 0
 
 #main func:
@@ -196,7 +199,7 @@ courseList_w_Marks = input_marks(numCours,course_list,student_list)
 
 show_marks(courseList_w_Marks)
 
-print("\n\nDone input students, courses and marks!")
+print("\nDone input students, courses and marks! Only listing function")
 
 x=0
 while x==0:
