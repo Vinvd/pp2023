@@ -1,8 +1,8 @@
 # Students input
 def input_num_students():       #return number of student
-    nhap = input('Input number of students in the class: ')
-    if nhap.isnumeric():
-        numStudent = int(nhap)
+    type = input('Input number of students in the class: ')
+    if type.isnumeric():
+        numStudent = int(type)
     else:
         input_num_students()
     return numStudent
@@ -40,10 +40,10 @@ def print_students_info(x):     #feed list student in
 
     y = 0
     while y == 0:
-        nhap = input('enter number in the given list: ')
-        if nhap.isnumeric():
-            if int(nhap) in range(1,4):
-                y = int(nhap)
+        type = input('enter number in the given list: ')
+        if type.isnumeric():
+            if int(type) in range(1,4):
+                y = int(type)
         else:
             print('please type in a number')
 
@@ -78,9 +78,9 @@ leTroll
 
 # Input courses
 def input_num_courses():    # return number of courses
-    nhap = input('Input number of courses in this class: ')
-    if nhap.isnumeric():
-        numCourse = int(nhap)
+    type = input('Input number of courses in this class: ')
+    if type.isnumeric():
+        numCourse = int(type)
     else:
         input_num_courses()
     return numCourse
@@ -112,10 +112,10 @@ def print_courses_info(x):  #return info, need to eat course list
 
     y = 0
     while y == 0:
-        nhap = input('enter number in the given list: ')
-        if nhap.isnumeric():
-            if int(nhap) in range(1,3):
-                y = int(nhap)
+        type = input('enter number in the given list: ')
+        if type.isnumeric():
+            if int(type) in range(1,3):
+                y = int(type)
         else:
             print('please type in a number')
 
@@ -129,6 +129,7 @@ def print_courses_info(x):  #return info, need to eat course list
             print(x[i]['name'])
     return 0
 
+# Input marks
 def input_marks(a,b,c):     # a is numcourse; b is list of courses; c is list students
     print('Select a course to input students\' marks')
     a= int(a)
@@ -137,10 +138,10 @@ def input_marks(a,b,c):     # a is numcourse; b is list of courses; c is list st
 
     x = 0
     while   x == 0:
-        nhap = input('select a course: ')
-        if nhap.isnumeric():
-            if (int(nhap)) in range(1,a+1):
-                x = int(nhap)
+        type = input('select a course: ')
+        if type.isnumeric():
+            if (int(type)) in range(1,a+1):
+                x = int(type)
             else:
                 print('form 1 to '+ str(a))
         else:
@@ -165,10 +166,10 @@ def show_marks(a):          # a is list of courses with marks
     
     y = 0
     while y == 0:
-        nhap = input('enter number in the given list: ')
-        if nhap.isnumeric():
-            if int(nhap) in range(1,len(a)+1):
-                y = int(nhap)
+        type = input('enter number in the given list: ')
+        if type.isnumeric():
+            if int(type) in range(1,len(a)+1):
+                y = int(type)
         else:
             print('please type in a number')
 
@@ -195,5 +196,27 @@ courseList_w_Marks = input_marks(numCours,course_list,student_list)
 
 show_marks(courseList_w_Marks)
 
-print("Done input students, courses and marks!")
+print("\n\nDone input students, courses and marks!")
 
+x=0
+while x==0:
+    print('\n0. Esc')
+    print('1. Print students information')
+    print('2. Courses information')
+    print('3. Show students mark in a course')
+    type = input('Enter a choice: ')
+    if type.isnumeric():
+        if int(type) in range(4):
+            type = int(type)
+        else:
+            print('Enter a number in the list.')
+        if type == 0:
+            x = x+1
+        elif type == 1:
+            print_students_info(student_list)
+        elif type == 2:
+            print_courses_info(course_list)
+        else:
+            show_marks(courseList_w_Marks)
+    else:
+        print('Enter a number.')
