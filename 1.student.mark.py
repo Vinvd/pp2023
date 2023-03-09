@@ -42,7 +42,7 @@ def print_students_info(x):     #feed list student in
     while y == 0:
         type = input('enter number in the given list: ')
         if type.isnumeric():
-            if int(type) in range(1,4):
+            if int(type) in range(1,5):
                 y = int(type)
         else:
             print('please type in a number')
