@@ -115,11 +115,10 @@ def print_courses_info(x):  #return info, need to eat course list
     while y == 0:
         type = input('enter number in the given list: ')
         if type.isnumeric():
-            if int(type) in range(1,3):
+            if int(type) in range(1,4):
                 y = int(type)
         else:
             print('please type in a number')
-    print('\n')
     if y==1:
         for i in range(len(x)):
             print(x[i])
@@ -152,12 +151,18 @@ def input_marks(a,b,c):     # a is numcourse; b is list of courses; c is list st
     print("Enter points of course "+ b[x-1]['name'])
     L = []
     for i in range(len(c)):
-        mark = int(input('mark of '+ c[i]['Name']+ ' :' ))
+        y = 0
+        while y == 0:
+            mark = input('mark of '+ c[i]['Name']+ ' :' )
+            if mark.isnumeric():
+                mark = int(mark)
+                y += 1
+            else:
+                print('please type in a number')
 
         S = {'name': c[i]['Name'], 'mark': int(mark)}
         L.append(S)
         del S
-
     b[x-1]['mark'] = L
     return b
 
@@ -199,7 +204,7 @@ courseList_w_Marks = input_marks(numCours,course_list,student_list)
 
 show_marks(courseList_w_Marks)
 
-print("\nDone input students, courses and marks! Only listing function")
+print("\nDone input students, courses and marks!\nListing functions:")
 
 x=0
 while x==0:
