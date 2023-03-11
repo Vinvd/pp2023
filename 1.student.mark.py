@@ -180,7 +180,7 @@ def show_marks(a):          # a is list of courses with marks
                 y = int(type)
         else:
             print('please type in a number')
-    print('\n')
+
     if 'mark' in a[y-1]:
         for i in range(len(a[y-1]['mark'])):
             print(a[y-1]['mark'][i])
