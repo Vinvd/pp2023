@@ -1,28 +1,55 @@
 class student:
     def __init__(self, StudentId, StudentnName, StudentDob):
-        self.id = StudentId
-        self.name = StudentnName
-        self.dob = StudentDob
+        self.__id = StudentId
+        self.__name = StudentnName
+        self.__dob = StudentDob
+
+    def print_std_id(self):
+        return self.__id
+    def print_std_name(self):
+        return self.__name
+    def print_std_dob(self):
+        return self.__dob
+
+    def set_std_id(self, stdId):
+        self.__id = stdId
+    def set_std_name(self, stdName):
+        self.__id = stdName
+    def set_std_id(self, strDob):
+        self.__id = strDob
 
     def __str__(self):
-        return f"Student: id: {self.id}, name: {self.name}, dob: {self.dob}."
+        return f"Student: id: {self.__id}, name: {self.__name}, dob: {self.__dob}."
     
-
 class course:
     def __init__(self, CourseId, CourseName):
-        self.id = CourseId
-        self.name = CourseName
+        self.__id = CourseId
+        self.__name = CourseName
 
-    def __str__(self):
-        return f"id: {self.id}, Course name: {self.name}"
+    def print_crs_id(self):
+        return self.__id
+    def print_crs_name(self):
+        return self.__name
     
-class mark:
-    def __init__(self, Student, Course, Mark):
-        self.student = Student
-        self.course = Course
-        self.mark = Mark
+    def set_crs_id(self,crsID):
+        self.__id = crsID
+    def set_crs_name(self,crsName):
+        self.__name = crsName
+    
     def __str__(self):
-        return f"name: {self.student.name}, course: {self.course.name}, mark: {self.mark}."
+        return f"id: {self.__id}, Course name: {self.__name}"
+    
+class mark(student, course):
+    def __init__(self, std, crs, mark):
+        self.stdName = std.print_std_name()
+        self.crsName = crs.print_crs_name()
+        self.__mark = mark
+
+    def print_mark(self):
+        return self.__mark
+
+    def print_mark_info(self):
+        return f"Student: {self.stdName}, Course: {self.crsName}, Mark: {self.__mark}"
 
 def input_num_students():       #return number of student
     type = input('Input number of students in the class: ')
@@ -68,13 +95,13 @@ def print_students_info(x):     #feed list of students in
             print(i)
     elif y==2:
         for i in range(len(x)):
-            print(x[i].id)        
+            print(x[i].print_std_id())
     elif y==3:
         for i in x:
-            print(i.name)
+            print(i.print_std_name())
     else:
         for i in range(len(x)):
-            print(x[i].dob)        
+            print(x[i].print_std_dob())        
     return 0
 
 def input_num_courses():    # return number of courses
@@ -117,17 +144,17 @@ def print_courses_info(x):  #return info, need to eat course list
             print(x[i])
     elif y==2:
         for i in range(len(x)):
-            print(x[i].id)
+            print(x[i].print_crs_id())
     else:
         for i in x:
-            print(i.name)
+            print(i.print_crs_name())
     return 0
 
 def input_marks(a,b,c):     # a is numcourse; b is list of courses; c is list students
     print('\nSelect number of a course to input students\' marks')
     a= int(a)
     for i in range(a):
-        print(str(i+1)+ ': '+ b[i].name)
+        print(str(i+1)+ ': '+ b[i].print_crs_name())
 
     x = 0
     while   x == 0:
@@ -139,13 +166,12 @@ def input_marks(a,b,c):     # a is numcourse; b is list of courses; c is list st
                 print('form 1 to '+ str(a))
         else:
             print('Plz enter a number in the given list')
-    
-    print("Enter points of course "+ b[x-1].name)
+    print(f"Enter points of course {b[x-1].print_crs_name()}: ")
     List_mark = []
     for i in range(len(c)):
         y = 0
         while y == 0:
-            mark_in = input('mark of '+ (c[i].name) + ' :' )
+            mark_in = input(f"mark of {c[i].print_std_name()}: ")
             if mark_in.isnumeric():
                 mark_in = int(mark_in)
                 y += 1
@@ -160,7 +186,7 @@ def input_marks(a,b,c):     # a is numcourse; b is list of courses; c is list st
 def print_marks(list_mark, list_course):         
     print('\nSelect a number of the course to show marks')
     for i in range(len(list_course)):
-        print(str(i+1) + ': ' + list_course[i].name)
+        print(str(i+1) + ': ' + list_course[i].print_crs_name())
     
     print('select course to output marks:')
     z = 0
@@ -172,10 +198,9 @@ def print_marks(list_mark, list_course):
         else:
             print('please type in a number')
 
-    print('\n')
     for i in list_mark:
-        if (i.course.name) == (list_course[z-1].name):
-            print(f'student: {i.student.name} marks: {i.mark}')
+        if (i.crsName) == (list_course[z-1].print_crs_name()):
+            print(f'student: {i.stdName}, marks: {i.print_mark()}')
     
     return 0
 
