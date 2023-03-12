@@ -64,7 +64,7 @@ def input_students_info(x):     #return list of students
     
     for i in range(int(x)):
                 
-        print('\nInput the Id, name and DoB of the \"'+ str(i+1) +'\" student') 
+        print(f'\nInput the Id, name and DoB of student \"{str(i+1)}\"') 
         studentId = input('Id:')
         studentName = str(input('Name:'))
         studentDoB = str(input('Date:'))
@@ -154,7 +154,7 @@ def input_marks(a,b,c):     # a is numcourse; b is list of courses; c is list st
     print('\nSelect number of a course to input students\' marks')
     a= int(a)
     for i in range(a):
-        print(str(i+1)+ ': '+ b[i].print_crs_name())
+        print(f'{str(i+1)}: {b[i].print_crs_name()}')
 
     x = 0
     while   x == 0:
