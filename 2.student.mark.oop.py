@@ -171,12 +171,15 @@ def input_marks(a,b,c):     # a is numcourse; b is list of courses; c is list st
     for i in range(len(c)):
         y = 0
         while y == 0:
-            mark_in = input(f"mark of {c[i].print_std_name()}: ")
-            if mark_in.isnumeric():
-                mark_in = int(mark_in)
-                y += 1
-            else:
-                print('please type in a number')
+            while True: # loop until valid data is entered
+                mark_in = input(f"mark of {c[i].print_std_name()}: ")
+                try:
+                    mark_in = float(mark_in) # convert string to float
+                    print("Valid float number:", mark_in)
+                    y += 1
+                    break # exit the loop
+                except ValueError: # catch exception if conversion fails
+                    print("Invalid float number:", mark_in)
 
         S = mark(c[i], b[x-1], mark_in)
         List_mark.append(S)
@@ -197,7 +200,7 @@ def print_marks(list_mark, list_course):
                 z = int(type)
         else:
             print('please type in a number')
-
+    print('\n')
     for i in list_mark:
         if (i.crsName) == (list_course[z-1].print_crs_name()):
             print(f'student: {i.stdName}, marks: {i.print_mark()}')
@@ -221,7 +224,7 @@ print("\nDone input students, courses and marks!\n\nListing functions:")
 
 x=0
 while x==0:
-    print('0. Esc')
+    print('\n0. Esc')
     print('1. Print students information')
     print('2. Courses information')
     print('3. Show students mark in a course')
