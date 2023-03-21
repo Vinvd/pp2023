@@ -275,6 +275,7 @@ def calculate_student_gpa(mark_list, std_name):
     credits_np = np.array(only_credits)
 
     gpa = np.sum(marks_np * credits_np) / np.sum(credits_np)
+    gpa = np.round(gpa,5)
     print(gpa)
     return gpa
 
