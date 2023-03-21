@@ -97,12 +97,13 @@ def print_students_info(x):     #feed list of students in
     print('2: List all Id')
     print('3: List all names')
     print('4: List all Dob')
+    print('5: list student gpa')
 
     y = 0
     while y == 0:
         type = input('enter number in the given list: ')
         if type.isnumeric():
-            if int(type) in range(1,5):
+            if int(type) in range(1,6):
                 y = int(type)
         else:
             print('please type in a number')
@@ -116,9 +117,12 @@ def print_students_info(x):     #feed list of students in
     elif y==3:
         for i in x:
             print(i.print_std_name())
-    else:
+    elif y==4:
         for i in range(len(x)):
             print(x[i].print_std_dob())        
+    elif y==5:
+        for i in x:
+            print(i.print_std_gpa())
     return 0
 
 def input_num_courses():    # return number of courses
@@ -288,6 +292,24 @@ def assign_student_gpa(gpa,student_list,choosen_One):
             print('\nAssigned\n')
     return student_list                 # :)
 
+def calculate_all_student(student_list):
+    for i in student_list:
+        the_one = i.print_std_name()
+        gpa = calculate_student_gpa(marks_list, the_one)
+        new_studentGpa_list=assign_student_gpa(gpa,student_list, the_one)
+    return new_studentGpa_list
+
+def sort_student_list(student_list):
+        
+    # create a numpy array of gpa
+    Gpas = np.array([person.print_std_gpa() for person in student_list])
+    indices = np.argsort(Gpas)
+        
+    sorted_student_list = [student_list[i] for i in indices]
+    for i in sorted_student_list:
+        print(f'student: {i.print_std_name()}, gpa: {i.print_std_gpa()}')
+    return sorted_student_list
+
 #main :
 numStudent = input_num_students()
 student_list = input_students_info(numStudent)
@@ -303,10 +325,12 @@ while x==0:
     print('3. Print courses information')
     print('4. Show students mark in a course')
     print('5. Calculate Gpa for a student')
+    print('6. Calculate Gpa for all students')
+    print('7. Sort student list by Gpa')
 
     type = input('Enter a choice: \n')
     if type.isnumeric():
-        if int(type) in range(6):
+        if int(type) in range(8):
             type = int(type)
         else:
             print('Enter a number in the list.')
@@ -342,11 +366,13 @@ while x==0:
             print_courses_info(course_list)
         elif type == 4:
             print_marks(marks_list, course_list)
-
         elif type == 5:
             choosenOne = choose_student_toCal_gpa(student_list)
             choosenOne_Gpa = calculate_student_gpa(marks_list, choosenOne)
             assign_student_gpa(choosenOne_Gpa,student_list,choosenOne)
-       
+        elif type == 6:
+            student_list = calculate_all_student(student_list)
+        elif type == 7:
+            sorted_list = sort_student_list(student_list)
     else:
         print('Enter a number.')
