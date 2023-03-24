@@ -418,7 +418,7 @@ def sort_student_list(student_list,stdscr):
     stdscr.clear()
     # create a numpy array of gpa
     Gpas = np.array([person.print_std_gpa() for person in student_list])
-    indices = np.argsort(Gpas)
+    indices = np.argsort(-Gpas)
         
     sorted_student_list = [student_list[i] for i in indices]
     for i in sorted_student_list:
