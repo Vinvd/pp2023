@@ -66,7 +66,7 @@ class mark(student, course):                                #mark_class
     def set_mark(self, mark):
         self.mark = mark
 
-    def print_mark_info(self):
+    def __str__(self):
         return f"Student: {self.stdName}, Course: {self.crsName}, Mark: {self.__mark}"
 
 def input_num_students(stdscr):       #return number of student
