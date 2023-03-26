@@ -60,13 +60,13 @@ def print_students_info(n,stdscr):     #feed list of students in
 
     elif z==5:
         stdscr.clear()
-        if n[0].print_std_gpa() == None:
-                stdscr.addstr('\n the gpa calculate have not run')
-        
-        else:    
-            for i in n:    
+        for i in n:
+            if i.print_std_gpa() == None:
+                stdscr.addstr('\n the gpa calculate all have not run')
+                break
+            else:    
                 y, x = stdscr.getyx()
-                stdscr.addstr(y+1, 0,i.print_std_gpa())                
+                stdscr.addstr(y+1, 0,str(i.print_std_gpa()))                
         stdscr.refresh()
 
     stdscr.getkey()  
