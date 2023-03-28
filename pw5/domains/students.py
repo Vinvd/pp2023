@@ -24,4 +24,4 @@ class student:
         self.__gpa = Gpa
 
     def __str__(self):
-        return f"id: {self.__id}, name: {self.__name}, dob: {self.__dob}."
+        return f"id: {self.__id}, name: {self.__name}, dob: {self.__dob}"

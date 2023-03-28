@@ -268,7 +268,7 @@ def read_from_dat(stdscr):
             lines = f.readlines()
             for line in lines:
                 line = line.decode("utf-8")
-                line = line.replace(".\r\n","")
+                line = line.replace("\r\n","")
                 fields = line.split(", ")
 
                 # extract the data for each field
