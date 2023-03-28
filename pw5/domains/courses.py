@@ -2,7 +2,7 @@ class course:
     def __init__(self, CourseId, CourseName, CourseCredit):
         self.__id = CourseId
         self.__name = CourseName
-        self.__credit = CourseCredit
+        self.__credit = int(CourseCredit)
 
     def print_crs_id(self):
         return self.__id

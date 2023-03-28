@@ -3,6 +3,19 @@ from domains.courses    import course
 from domains.marks      import mark
 import numpy as np
 import math
+import os
+import zipfile
+
+student_file_name = "students.txt"
+Student_filepath = os.path.join(os.path.dirname(__file__), student_file_name)
+course_file_name = "courses.txt"
+course_filepath = os.path.join(os.path.dirname(__file__), course_file_name)
+mark_file_name = "marks.txt"
+mark_filepath = os.path.join(os.path.dirname(__file__), mark_file_name)
+
+data_file_name = "students.dat"
+data_file_path = os.path.join(os.path.dirname(__file__), data_file_name)
+
 
 def input_num_students(stdscr):         #return number of student
     
@@ -46,7 +59,13 @@ def input_students_info(x,stdscr):      #return list of students
         Student = student(studentId,studentName,studentDoB,None)
         students.append(Student)
     stdscr.refresh()
-
+    
+    file = open(Student_filepath, "w")
+    for i in students:
+        file.write(f'{i}\n')
+    file.close()
+    stdscr.addstr(f'\nDone input student.txt')
+    stdscr.getkey()
     stdscr.clear() 
     return students
 
@@ -61,7 +80,7 @@ def input_num_courses(stdscr):          #return number of courses
         numCourse = int(type)
         stdscr.refresh()
     else:
-        input_num_courses()
+        input_num_courses(stdscr)
     stdscr.clear()
     return numCourse
 
@@ -94,17 +113,24 @@ def input_courses_info(x,stdscr):       #return list of courses; need to eat an 
 
         Course = course(courseId,courseName,courseCredit)        
         courses.append(Course)
-    stdscr.refresh() 
+    stdscr.refresh()
+
+    file = open(course_filepath, "w")
+    for i in courses:
+        file.write(f'{i}\n')
+    file.close()
+    stdscr.addstr(f'\nDone input course.txt')
+    stdscr.getkey()
     stdscr.clear() 
     return courses
 
-def input_marks(a,b,c,stdscr):     # a is numcourse; b is list of courses; c is list students
+def input_marks(b,c,stdscr):     # b is list of courses; c is list students "i removed a :)"
     stdscr.clear() 
     stdscr.refresh()
 
     List_mark = []
 
-    for x in range(a):
+    for x in range(len(b)):
         stdscr.addstr(f"\nEnter points of course {b[x].print_crs_name()}: ")
 
         for i in range(len(c)):
@@ -129,6 +155,13 @@ def input_marks(a,b,c,stdscr):     # a is numcourse; b is list of courses; c is 
             del S
 
     stdscr.refresh()
+    
+    file = open(mark_filepath, "w")
+    for i in List_mark:
+        file.write(f'{i}\n')
+    file.close()
+
+    stdscr.addstr(f'\nDone input marks.txt')
     stdscr.getkey()
     stdscr.clear()
     return List_mark
@@ -169,7 +202,7 @@ def calculate_student_gpa(mark_list, std_name,stdscr):
             only_credits.append(credit)
     stdscr.addstr(f'\nmarks: {only_marks}')
     stdscr.addstr(f'\ncredits: {only_credits}')
-
+    stdscr.getkey()
     marks_np = np.array(only_marks)
     credits_np = np.array(only_credits)
 
@@ -212,3 +245,91 @@ def sort_student_list(student_list,stdscr):
     stdscr.getkey() 
     stdscr.clear()
     return sorted_student_list
+
+def read_from_dat(stdscr):
+    students = []
+    courses = []
+    Marks = []
+    stdscr.clear()
+    # name of the compressed file
+    compressed_file = data_file_path
+
+    # create a ZipFile object for the compressed file
+    # FileNotFoundError
+    with zipfile.ZipFile(compressed_file, mode="r") as zf:
+
+        # stdscr.addstr(f'\n{zf.namelist()}')         # list the contents of the zip file
+
+        student_file = zf.namelist()[0]
+        course_file = zf.namelist()[1]
+        mark_file = zf.namelist()[2]
+
+        with zf.open(student_file, "r") as f:
+            lines = f.readlines()
+            for line in lines:
+                line = line.decode("utf-8")
+                line = line.replace(".\r\n","")
+                fields = line.split(", ")
+
+                # extract the data for each field
+                id = fields[0][4:]
+                name = fields[1][6:]
+                dob = fields[2][5:]
+
+                Student = student(id,name,dob,None)
+                students.append(Student)
+
+        with zf.open(course_file, "r") as f2:
+            lines = f2.readlines()
+            for line in lines:
+                line = line.decode("utf-8")
+                line = line.replace("\r\n","")
+                fields = line.split(", ")
+
+                # extract the data for each field
+                id = fields[0][4:]
+                name = fields[1][13:]
+                credit = fields[2][8:]
+
+                Course = course(id,name,credit)
+                courses.append(Course)
+
+        with zf.open(mark_file, "r") as f3:
+            lines = f3.readlines()
+            for line in lines:
+                line = line.decode("utf-8")
+                line = line.replace("\r\n","")
+                fields = line.split(", ")
+
+                # extract the data for each field
+                Mark_Student = fields[0][9:]
+                Mark_course = fields[1][8:]
+                Mark_value = fields[2][6:]
+
+                for i in students:
+                    if Mark_Student == i.print_std_name():
+                        Mark_Student = i
+                for i in courses:
+                    if Mark_course == i.print_crs_name():
+                        Mark_course = i
+
+                Mark = mark(Mark_Student, Mark_course, Mark_value)
+                Marks.append(Mark)
+
+    file = open(Student_filepath, "w")
+    for i in students:
+        file.write(f'{i}\n')
+    file.close()
+
+    file = open(course_filepath, "w")
+    for i in courses:
+        file.write(f'{i}\n')
+    file.close()
+
+    file = open(mark_filepath, "w")
+    for i in Marks:
+        file.write(f'{i}\n')
+    file.close()
+    stdscr.addstr(f'\nstudents.dat found, data imported')
+    stdscr.getkey()
+    return students, courses, Marks

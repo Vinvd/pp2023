@@ -7,7 +7,7 @@ class mark(student, course):                                #mark_class
         self.stdName   = std.print_std_name()
         self.crsName   = crs.print_crs_name()
         self.crsCredit = crs.print_crs_credit()
-        self.__mark = mark
+        self.__mark = float(mark)
 
     def print_mark(self):
         return self.__mark
