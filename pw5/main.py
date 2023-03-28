@@ -93,7 +93,7 @@ def mainFunc(stdscr):
     file.close()
     
     stdscr.clear()
-    stdscr.addstr(f'\n done write into .txt files')
+    stdscr.addstr(f'\nDone write into .txt files')
         
     return stdscr.addstr(f'\nEverything done. Press any key to exit.')
 
