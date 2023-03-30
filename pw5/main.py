@@ -117,7 +117,8 @@ def mainFunc(stdscr,student_list, course_list, marks_list):
         for filename in files_name:
             zf.write(filename)
     stdscr.addstr(f'\nDone compressed into .dat files')
-    return stdscr.addstr(f'\nEverything done. Press any key to exit.')
+    curses.init_pair(1, curses.COLOR_RED, curses.COLOR_BLACK)
+    return stdscr.addstr(f'\nEverything done. Press any key to exit.',curses.color_pair(1))
 
 def main_call(stdscr):
     try:
@@ -136,4 +137,5 @@ def main(stdscr):
     stdscr.refresh()
     stdscr.getkey()
 
-curses.wrapper(main)
+if __name__ == "__main__":
+    curses.wrapper(main)
